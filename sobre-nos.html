@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Rannix Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+        header { background:#0a0a0a; color:white; padding:20px; text-align:center; }
+        header h1 { color:#00aaff; margin:0; }
+        nav { background:#222; padding:12px; text-align:center; }
+        nav a { color:white; margin:15px; text-decoration:none; font-weight:bold; }
+        nav a:hover { color:#00aaff; }
+        
+        .banner-interna {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("um-casal-jovem-comprando-telefones-com-um-vendedor-ajudando-os-em-uma-loja-de-eletronicos_166222-22668.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .conteudo {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 18px;
+            color: #333;
+        }
+        .conteudo h2 {
+            color: #00aaff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .valores {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .valor {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 260px;
+            text-align: center;
+        }
+        .carrinho-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #00aaff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+    .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-decoration: none;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #1ebe5d;
+}
+    
+    /* ── Botões flutuantes ── */
+        .float-social {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 9999;
+        }
+        .float-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+            transition: transform .25s, box-shadow .25s;
+            position: relative;
+        }
+        .float-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+        }
+        .float-whatsapp  { background: #25D366; }
+        .float-instagram {
+            background: radial-gradient(circle at 30% 110%,
+                #fdf497 0%, #fdf497 5%,
+                #fd5949 45%, #d6249f 60%,
+                #285AEB 90%);
+        }
+        .float-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 66px;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s;
+            font-family: Arial, sans-serif;
+        }
+        .float-btn:hover::before { opacity: 1; }
+        .float-btn svg { width: 28px; height: 28px; fill: white; }
+
+    
+    /* ── RODAPÉ PROFISSIONAL ── */
+        footer {
+            background: #0a0a0a;
+            color: #aaa;
+            padding: 60px 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #222;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #1e1e1e;
+        }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-desc { font-size: .84rem; line-height: 1.7; color: #777; margin-bottom: 20px; }
+        .footer-heading {
+            color: white;
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #00aaff;
+            display: inline-block;
+        }
+        /* Links */
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: .85rem;
+            transition: color .2s;
+        }
+        .footer-links a:hover { color: #00aaff; }
+        /* Info contacto */
+        .footer-info { list-style: none; padding: 0; }
+        .footer-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .info-icon { font-size: 1.1rem; margin-top: 2px; }
+        .footer-info small { color: #555; font-size: .72rem; display: block; margin-bottom: 2px; }
+        .footer-info strong { color: #ccc; font-size: .84rem; }
+        /* Redes sociais */
+        .footer-social { display: flex; gap: 10px; }
+        .social-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
+            transition: transform .25s;
+        }
+        .social-btn:hover { transform: scale(1.12); }
+        .social-btn svg { width: 20px; height: 20px; fill: white; }
+        .social-btn.whatsapp { background: #25D366; }
+        .social-btn.instagram {
+            background: radial-gradient(circle at 30% 110%,
+                #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        /* Pagamento */
+        .payment-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .pay-badge {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: .82rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pay-badge.mpesa  { background: #e2001a; color: white; }
+        .pay-badge.emola  { background: #0066cc; color: white; }
+        /* Garantias */
+        .footer-guarantee { display: flex; flex-direction: column; gap: 8px; }
+        .guarantee-item { font-size: .82rem; color: #777; }
+        /* Barra inferior */
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            font-size: .8rem;
+            color: #444;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-bottom strong { color: #00aaff; }
+        @media (max-width: 600px) {
+            .footer-grid { flex-direction: column; }
+            .footer-bottom { justify-content: center; text-align: center; }
+        }
+    
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+    <img src="logo.svg" alt="Rannix Store" style="height: 48px;">
+</a>
+    <p>Celulares e Acessórios de Qualidade • Moçambique</p>
+</header>
+
+<nav>
+    <a href="index.html">Início</a>
+    <a href="celulares.html">Celulares</a>
+    <a href="acessorios.html">Acessórios</a>
+    <a href="destaques.html">Em Destaque</a>
+    <a href="sobre-nos.html">Sobre Nós</a>
+    <a href="contacto.html">Contacto</a>
+</nav>
+
+<a href="carrinho.html" class="carrinho-btn">🛒 Carrinho (<span id="cart-count">0</span>)</a>
+
+<div class="banner-interna">
+    <div>
+        <h2 style="font-size:36px; color:#00aaff;">Sobre Nós</h2>
+        <p>Conheça a história da Rannix Store</p>
+    </div>
+</div>
+
+<div class="conteudo">
+    <h2>Bem-vindo à Rannix Store</h2>
+    <p>
+        Fundada em 2024 na cidade de Tete, a Rannix Store nasceu com o objetivo de trazer para Moçambique 
+        os melhores celulares e acessórios com preços justos e qualidade garantida.
+    </p>
+    <p>
+        Somos uma loja 100% moçambicana que acredita que tecnologia de qualidade deve estar ao alcance de todos. 
+        Trabalhamos diretamente com distribuidores oficiais para garantir originalidade e assistência técnica.
+    </p>
+
+    <h2 style="margin-top:40px;">Por que escolher a Rannix Store?</h2>
+    <div class="valores">
+        <div class="valor">
+            <h3>✅ Originalidade</h3>
+            <p>Todos os produtos são 100% originais com nota fiscal.</p>
+        </div>
+        <div class="valor">
+            <h3>✅ Garantia</h3>
+            <p>1 ano de garantia em todos os celulares.</p>
+        </div>
+        <div class="valor">
+            <h3>✅ Preços Justos</h3>
+            <p>Melhores preços de Tete a Maputo.</p>
+        </div>
+        <div class="valor">
+            <h3>✅ Entrega Rápida</h3>
+            <p>Entregamos em todo o país via correios ou transportadora.</p>
+        </div>
+    </div>
+
+    <p style="text-align:center; font-size:17px; margin-top:30px;">
+        <strong>Localização:</strong> Tete, Moçambique<br>
+        <strong>Missão:</strong> Tornar a tecnologia acessível e confiável para todos os moçambicanos.
+    </p>
+</div>
+
+
+
+<!-- Botões Flutuantes WhatsApp + Instagram -->
+<div class="float-social">
+
+    <a href="https://wa.me/258833685820"
+       target="_blank"
+       class="float-btn float-whatsapp"
+       data-tooltip="WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.492.648 4.835 1.782 6.87L2 30l7.38-1.756A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.56 11.56 0 01-5.89-1.607l-.422-.252-4.38 1.043 1.077-4.267-.276-.437A11.564 11.564 0 014.4 16C4.4 9.59 9.59 4.4 16 4.4S27.6 9.59 27.6 16 22.41 27.6 16 27.6zm6.33-8.67c-.347-.174-2.055-1.013-2.374-1.129-.319-.116-.551-.174-.783.174-.232.347-.9 1.129-1.103 1.362-.203.232-.406.26-.753.087-.347-.174-1.465-.54-2.79-1.72-1.031-.917-1.727-2.05-1.93-2.397-.203-.347-.022-.535.152-.708.157-.156.347-.406.521-.609.173-.203.23-.347.347-.579.116-.232.058-.435-.029-.609-.087-.174-.783-1.888-1.073-2.587-.283-.68-.57-.588-.783-.599l-.667-.012c-.232 0-.609.087-.927.435-.319.347-1.218 1.19-1.218 2.903s1.247 3.368 1.42 3.6c.174.232 2.455 3.748 5.95 5.255.832.359 1.481.573 1.987.733.835.266 1.595.229 2.195.139.67-.1 2.055-.84 2.345-1.652.29-.812.29-1.508.203-1.652-.085-.145-.317-.232-.664-.406z"/>
+        </svg>
+    </a>
+
+    <a href="https://instagram.com/rannixstore"
+       target="_blank"
+       class="float-btn float-instagram"
+       data-tooltip="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+    </a>
+
+</div>
+
+    
+<!-- RODAPÉ PROFISSIONAL -->
+<footer>
+    <div class="footer-grid">
+
+        <!-- Coluna 1: Marca -->
+        <div class="footer-col">
+            <img src="logo.svg" alt="Rannix Store" style="height:42px; margin-bottom:14px;">
+            <p class="footer-desc">A tua loja de confiança em Tete. Celulares e acessórios originais com os melhores preços em Moçambique.</p>
+            <div class="footer-social">
+                <a href="https://wa.me/258833685820" target="_blank" class="social-btn whatsapp">
+                    <svg viewBox="0 0 32 32"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.492.648 4.835 1.782 6.87L2 30l7.38-1.756A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.56 11.56 0 01-5.89-1.607l-.422-.252-4.38 1.043 1.077-4.267-.276-.437A11.564 11.564 0 014.4 16C4.4 9.59 9.59 4.4 16 4.4S27.6 9.59 27.6 16 22.41 27.6 16 27.6zm6.33-8.67c-.347-.174-2.055-1.013-2.374-1.129-.319-.116-.551-.174-.783.174-.232.347-.9 1.129-1.103 1.362-.203.232-.406.26-.753.087-.347-.174-1.465-.54-2.79-1.72-1.031-.917-1.727-2.05-1.93-2.397-.203-.347-.022-.535.152-.708.157-.156.347-.406.521-.609.173-.203.23-.347.347-.579.116-.232.058-.435-.029-.609-.087-.174-.783-1.888-1.073-2.587-.283-.68-.57-.588-.783-.599l-.667-.012c-.232 0-.609.087-.927.435-.319.347-1.218 1.19-1.218 2.903s1.247 3.368 1.42 3.6c.174.232 2.455 3.748 5.95 5.255.832.359 1.481.573 1.987.733.835.266 1.595.229 2.195.139.67-.1 2.055-.84 2.345-1.652.29-.812.29-1.508.203-1.652-.085-.145-.317-.232-.664-.406z"/></svg>
+                </a>
+                <a href="https://instagram.com/rannixstore" target="_blank" class="social-btn instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Coluna 2: Links -->
+        <div class="footer-col">
+            <h4 class="footer-heading">Navegação</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">🏠 Início</a></li>
+                <li><a href="celulares.html">📱 Celulares</a></li>
+                <li><a href="acessorios.html">🎧 Acessórios</a></li>
+                <li><a href="destaques.html">⭐ Em Destaque</a></li>
+                <li><a href="sobre-nos.html">ℹ️ Sobre Nós</a></li>
+                <li><a href="contacto.html">✉️ Contacto</a></li>
+                <li><a href="carrinho.html">🛒 Carrinho</a></li>
+            </ul>
+        </div>
+
+        <!-- Coluna 3: Contacto -->
+        <div class="footer-col">
+            <h4 class="footer-heading">Contacto</h4>
+            <ul class="footer-info">
+                <li>
+                    <span class="info-icon">👤</span>
+                    <div>
+                        <small>Proprietário</small>
+                        <strong>Ronaldo Zidade</strong>
+                    </div>
+                </li>
+                <li>
+                    <span class="info-icon">📞</span>
+                    <div>
+                        <small>WhatsApp</small>
+                        <strong>+258 83 368 5820</strong>
+                    </div>
+                </li>
+                <li>
+                    <span class="info-icon">✉️</span>
+                    <div>
+                        <small>Email</small>
+                        <strong>rannixstore@ac.mz</strong>
+                    </div>
+                </li>
+                <li>
+                    <span class="info-icon">📍</span>
+                    <div>
+                        <small>Morada</small>
+                        <strong>Tete, Moçambique</strong>
+                    </div>
+                </li>
+                <li>
+                    <span class="info-icon">🕐</span>
+                    <div>
+                        <small>Atendimento</small>
+                        <strong>06h00 – 18h00 (todos os dias)</strong>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Coluna 4: Pagamento -->
+        <div class="footer-col">
+            <h4 class="footer-heading">Pagamento</h4>
+            <p style="color:#888; font-size:.82rem; margin-bottom:14px;">Aceitamos os seguintes métodos de pagamento:</p>
+            <div class="payment-badges">
+                <div class="pay-badge mpesa">
+                    <span>📲</span> M-Pesa
+                </div>
+                <div class="pay-badge emola">
+                    <span>💳</span> e-Mola
+                </div>
+            </div>
+            <div class="footer-guarantee">
+                <div class="guarantee-item">✅ Entrega rápida</div>
+                <div class="guarantee-item">🛡️ Produtos originais</div>
+                <div class="guarantee-item">🔄 Garantia real</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Barra inferior -->
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Rannix Store</strong> — Todos os direitos reservados</p>
+        <p>Desenvolvido com ❤️ em Tete, Moçambique</p>
+    </div>
+</footer>
+
+<script>
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        document.getElementById('cart-count').textContent = cart.length;
+    }
+    window.onload = updateCartCount;
+</script>
+</body>
+</html>

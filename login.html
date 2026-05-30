@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Cadastro - Rannix Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00aaff;
+            --dark: #0f0f0f;
+            --accent: #00ff88;
+            --card-bg: #161616;
+            --input-bg: #1e1e1e;
+            --border: #2a2a2a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: #0a0a0a;
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        header .logo {
+            color: var(--primary);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        header .logo span { color: white; }
+        header nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        header nav a:hover { color: var(--primary); }
+
+        /* ===== MAIN CONTAINER ===== */
+        .page-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0,170,255,0.08) 0%, transparent 60%);
+        }
+
+        .auth-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 460px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 18px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        /* ===== FORMS ===== */
+        .form-section {
+            padding: 35px;
+            display: none;
+        }
+        .form-section.active { display: block; }
+
+        .form-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .form-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: block;
+            color: #aaa;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .input-group input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 13px 16px;
+            color: white;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,170,255,0.1);
+        }
+        .input-group input::placeholder { color: #444; }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+        .submit-btn:hover {
+            background: #0095dd;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(0,170,255,0.35);
+        }
+        .submit-btn:active { transform: translateY(0); }
+
+        .error-msg {
+            display: none;
+            background: rgba(255,60,60,0.12);
+            border: 1px solid rgba(255,60,60,0.3);
+            color: #ff6b6b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            margin-bottom: 16px;
+        }
+        .success-msg {
+            display: none;
+            background: rgba(0,255,136,0.1);
+            border: 1px solid rgba(0,255,136,0.3);
+            color: var(--accent);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            margin-bottom: 16px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .divider span { color: #555; font-size: 0.82rem; }
+
+        .forgot-link {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 18px;
+        }
+        .forgot-link a {
+            color: var(--primary);
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+        .forgot-link a:hover { text-decoration: underline; }
+
+        .terms-text {
+            font-size: 0.78rem;
+            color: #555;
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+        .terms-text a { color: var(--primary); text-decoration: none; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a0a0a;
+            color: #555;
+            text-align: center;
+            padding: 16px;
+            font-size: 0.82rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+    <img src="logo.svg" alt="Rannix Store" style="height: 48px;">
+</a>
+    <nav>
+        <p></><a href="index.html">← Voltar à Loja</a></p>
+    </nav>
+</header>
+
+<div class="page-wrapper">
+    <div class="auth-container">
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('login')">Entrar</button>
+            <button class="tab-btn" onclick="showTab('cadastro')">Criar Conta</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="form-section active" id="tab-login">
+            <h2 class="form-title">Bem-vindo de volta!</h2>
+            <p class="form-subtitle">Entra na tua conta para continuar</p>
+
+            <div class="error-msg" id="login-error">Email ou senha incorretos. Tenta novamente.</div>
+            <div class="success-msg" id="login-success">Login realizado! A redirecionar...</div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="login-email" placeholder="o.teu@email.com">
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" id="login-senha" placeholder="••••••••">
+            </div>
+
+            <div class="forgot-link">
+                <a href="#">Esqueceste a senha?</a>
+            </div>
+
+            <button class="submit-btn" onclick="fazerLogin()">Entrar na Conta</button>
+
+            <p class="terms-text" style="margin-top:20px;">
+                Não tens conta? <a href="#" onclick="showTab('cadastro')">Cria aqui gratuitamente</a>
+            </p>
+        </div>
+
+        <!-- CADASTRO -->
+        <div class="form-section" id="tab-cadastro">
+            <h2 class="form-title">Criar conta</h2>
+            <p class="form-subtitle">Regista-te e começa a comprar</p>
+
+            <div class="error-msg" id="cad-error">Preenche todos os campos correctamente.</div>
+            <div class="success-msg" id="cad-success">Conta criada! A redirecionar...</div>
+
+            <div class="input-group">
+                <label>Nome Completo</label>
+                <input type="text" id="cad-nome" placeholder="O teu nome">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="cad-email" placeholder="o.teu@email.com">
+            </div>
+
+            <div class="input-group">
+                <label>Número de Telemóvel</label>
+                <input type="tel" id="cad-tel" placeholder="+258 8X XXX XXXX">
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres">
+            </div>
+
+            <div class="input-group">
+                <label>Confirmar Senha</label>
+                <input type="password" id="cad-senha2" placeholder="Repete a senha">
+            </div>
+
+            <button class="submit-btn" onclick="fazerCadastro()">Criar Conta Grátis</button>
+
+            <p class="terms-text">
+                Ao criar conta aceitas os <a href="#">Termos de Uso</a> e a
+                <a href="#">Política de Privacidade</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 Rannix Store | Tete - Moçambique
+</footer>
+
+<script>
+    // ── Dados de utilizadores guardados localmente ──
+    function getUsers() {
+        return JSON.parse(localStorage.getItem('rannix_users') || '[]');
+    }
+    function saveUsers(users) {
+        localStorage.setItem('rannix_users', JSON.stringify(users));
+    }
+
+    // ── Trocar aba ──
+    function showTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach((b, i) => {
+            b.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'cadastro' && i === 1));
+        });
+        document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+        document.getElementById('tab-cadastro').classList.toggle('active', tab === 'cadastro');
+    }
+
+    // ── Login ──
+    function fazerLogin() {
+        const email = document.getElementById('login-email').value.trim();
+        const senha = document.getElementById('login-senha').value.trim();
+        const errEl = document.getElementById('login-error');
+        const okEl  = document.getElementById('login-success');
+
+        errEl.style.display = 'none';
+        okEl.style.display  = 'none';
+
+        if (!email || !senha) {
+            errEl.textContent = 'Preenche o email e a senha.';
+            errEl.style.display = 'block';
+            return;
+        }
+
+        const users = getUsers();
+        const user  = users.find(u => u.email === email && u.senha === senha);
+
+        if (user) {
+            localStorage.setItem('rannix_logado', JSON.stringify(user));
+            okEl.style.display = 'block';
+            setTimeout(() => window.location.href = 'index.html', 1200);
+        } else {
+            errEl.textContent = 'Email ou senha incorretos. Tenta novamente.';
+            errEl.style.display = 'block';
+        }
+    }
+
+    // ── Cadastro ──
+    function fazerCadastro() {
+        const nome   = document.getElementById('cad-nome').value.trim();
+        const email  = document.getElementById('cad-email').value.trim();
+        const tel    = document.getElementById('cad-tel').value.trim();
+        const senha  = document.getElementById('cad-senha').value.trim();
+        const senha2 = document.getElementById('cad-senha2').value.trim();
+        const errEl  = document.getElementById('cad-error');
+        const okEl   = document.getElementById('cad-success');
+
+        errEl.style.display = 'none';
+        okEl.style.display  = 'none';
+
+        if (!nome || !email || !tel || !senha || !senha2) {
+            errEl.textContent = 'Preenche todos os campos.';
+            errEl.style.display = 'block';
+            return;
+        }
+        if (senha.length < 6) {
+            errEl.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+            errEl.style.display = 'block';
+            return;
+        }
+        if (senha !== senha2) {
+            errEl.textContent = 'As senhas não coincidem.';
+            errEl.style.display = 'block';
+            return;
+        }
+
+        const users = getUsers();
+        if (users.find(u => u.email === email)) {
+            errEl.textContent = 'Já existe uma conta com este email.';
+            errEl.style.display = 'block';
+            return;
+        }
+
+        const novoUser = { nome, email, tel, senha, role: 'cliente' };
+        users.push(novoUser);
+        saveUsers(users);
+        localStorage.setItem('rannix_logado', JSON.stringify(novoUser));
+
+        okEl.style.display = 'block';
+        setTimeout(() => window.location.href = 'index.html', 1400);
+    }
+
+    // Enter key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            if (document.getElementById('tab-login').classList.contains('active')) fazerLogin();
+            else fazerCadastro();
+        }
+    });
+</script>
+
+</body>
+</html>

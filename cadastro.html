@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro - Rannix Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>Criar Conta</h2>
+
+        <input type="text" id="nome" placeholder="Nome completo">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="senha" placeholder="Senha">
+
+        <button onclick="cadastro()">Cadastrar</button>
+
+        <p>Já tens conta? <a href="login.html">Entrar</a></p>
+    </div>
+</div>
+
+<script>
+function cadastro(){
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    const usuario = {nome, email, senha};
+
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+
+    alert('Cadastro realizado com sucesso!');
+    window.location.href = 'login.html';
+}
+</script>
+
+</body>
+</html>
